@@ -3,9 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero/Hero';  // Update the import path
 import Features from './components/Features';
 import CallToAction from './components/CallToAction';
-import { ChatButton } from './components/Chat';
-
-const { ChatWindow } = () => import('./components/Chat');
+import { ChatButton, ChatWindow } from './components/Chat';
 
 function App() {
   const [isChatOpen, setIsChatOpen] = useState(false);
