@@ -1,0 +1,39 @@
+{
+  "name": "bitsflea-landing",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "relay": "node src/server/relay.js",
+    "server": "node src/server/server.js"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-gossipsub": "^14.1.0",
+    "@heroicons/react": "^2.0.18",
+    "@libp2p/peer-id-factory": "^4.2.4",
+    "@libp2p/pubsub-peer-discovery": "^11.0.1",
+    "@libp2p/webrtc-star": "^7.0.0",
+    "@libp2p/websockets": "^9.1.0",
+    "@orbitdb/core": "^2.4.3",
+    "blockstore-idb": "^2.0.1",
+    "blockstore-level": "^2.0.1",
+    "buffer": "^6.0.3",
+    "date-fns": "^2.30.0",
+    "helia": "^5.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "rollup-plugin-visualizer": "^5.13.1",
+    "tailwindcss": "^3.3.3",
+    "vite": "^6.0.7"
+  }
+}
