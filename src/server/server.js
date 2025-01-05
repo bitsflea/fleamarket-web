@@ -13,7 +13,9 @@ import { gossipsub } from "@chainsafe/libp2p-gossipsub";
 import { LevelBlockstore } from 'blockstore-level'
 import { createHelia } from 'helia';
 import { createOrbitDB, IPFSAccessController } from '@orbitdb/core';
-import bootstrappers from "./bootstrappers"
+
+import { bootstrap } from '@libp2p/bootstrap';
+import bootstrappers from "./bootstrappers.js"
 
 
 let ipfs = null;
