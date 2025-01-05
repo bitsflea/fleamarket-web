@@ -21,6 +21,8 @@ import { pubsubPeerDiscovery } from '@libp2p/pubsub-peer-discovery'
 import { createSecp256k1PeerId, exportToProtobuf, createFromProtobuf } from '@libp2p/peer-id-factory'
 import { privateKeyToProtobuf, privateKeyFromProtobuf, generateKeyPair } from "@libp2p/crypto/keys"
 
+import bootstrappers from "../server/bootstrappers"
+
 let ipfs = null;
 let orbitdb = null;
 let db = null;
@@ -82,7 +84,7 @@ export const initOrbitDB = async () => {
 
   if (relays.length > 0) {
     option.peerDiscovery.push(bootstrap({
-      list: relays
+      list: [...relays, ...bootstrappers]
     }))
   }
 
@@ -144,6 +146,11 @@ export const initOrbitDB = async () => {
     db = await orbitdb.open("/orbitdb/zdpuAzQi2wjs135VhWjj62XSSwPySfV41by5FUxme9fByZQDi")
 
     console.log("Database ready:", db.address);
+
+    
+    // setInterval(()=>{
+    //   console.log(ipfs.libp2p.getPeers().map((peerId) => peerId.toString()))
+    // },3000)
 
     return db;
   } catch (error) {

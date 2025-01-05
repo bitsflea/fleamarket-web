@@ -13,6 +13,7 @@ import { gossipsub } from "@chainsafe/libp2p-gossipsub";
 import { LevelBlockstore } from 'blockstore-level'
 import { createHelia } from 'helia';
 import { createOrbitDB, IPFSAccessController } from '@orbitdb/core';
+import bootstrappers from "./bootstrappers"
 
 
 let ipfs = null;
@@ -41,7 +42,12 @@ const options = {
             }
         }),
         dht: kadDHT({ enabled: true }),
-    }
+    },
+    peerDiscovery: [
+        bootstrap({
+            list: bootstrappers
+        })
+    ]
 }
 
 async function main() {
