@@ -24,7 +24,7 @@ import { privateKeyToProtobuf, privateKeyFromProtobuf, generateKeyPair } from "@
 let ipfs = null;
 let orbitdb = null;
 let db = null;
-const relays = ["/ip4/127.0.0.1/tcp/61713/ws/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"]
+const relays = ["/ip4/8.219.249.211/tcp/61713/ws/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"]
 
 export const initOrbitDB = async () => {
   if (db) return db;
