@@ -21,7 +21,10 @@ let userId = "bitsflea-chat";
 
 const options = {
     addresses: {
-        listen: ['/ip4/0.0.0.0/tcp/61713/ws']
+        listen: [
+            '/ip4/0.0.0.0/tcp/61713/ws',
+            '/ip4/8.219.249.211/tcp/61713/ws'
+        ]
     },
     transports: [
         webSockets({
