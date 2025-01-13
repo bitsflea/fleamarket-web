@@ -13,6 +13,7 @@ import { kadDHT, removePublicAddressesMapper } from '@libp2p/kad-dht';
 import { gossipsub } from "@chainsafe/libp2p-gossipsub";
 import { webRTC, webRTCDirect } from "@libp2p/webrtc";
 import { circuitRelayTransport } from '@libp2p/circuit-relay-v2'
+import { bootstrap } from '@libp2p/bootstrap';
 
 const options = {
     addresses: {
@@ -22,6 +23,8 @@ const options = {
         webSockets({
             filter: filters.all
         }),
+        webRTC(),
+        circuitRelayTransport()
     ],
     connectionEncrypters: [noise()],
     streamMuxers: [yamux()],
@@ -33,13 +36,19 @@ const options = {
                 maxReservations: Infinity
             }
         }),
-        // kadDHT: kadDHT({
-        //     protocol: '/ipfs/lan/kad/1.0.0',
-        //     peerInfoMapper: removePublicAddressesMapper,
-        //     clientMode: false
-        // }),
-        dht: kadDHT({ enabled: true }),
-    }
+        dht: kadDHT({
+            protocol: '/ipfs/lan/kad/1.0.0',
+            // protocol:'/p2p-circuit',
+            peerInfoMapper: removePublicAddressesMapper,
+            clientMode: false
+        })
+    },
+    peerDiscovery: [
+        bootstrap({
+            list: ['/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ'],
+            interval: 2000
+        })
+    ]
 }
 
 async function main() {
