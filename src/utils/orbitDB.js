@@ -71,7 +71,7 @@ export const initOrbitDB = async () => {
       identify: identify(),
       pubsub: gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true }),
       dcutr: dcutr(),
-      dht: kadDHT({ enabled: true }),
+      dht: kadDHT({ clientMode: true }),
     },
     peerDiscovery: [
       pubsubPeerDiscovery({

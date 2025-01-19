@@ -59,7 +59,7 @@ const options = {
                 maxReservations: Infinity
             }
         }),
-        dht: kadDHT({ enabled: true }),
+        dht: kadDHT(),
     },
     peerDiscovery: [
         bootstrap({
@@ -72,7 +72,7 @@ const options = {
 }
 
 const onPin = (evt) => {
-    // console.log("onPin:", evt)
+    console.log("onPin:", evt)
 }
 
 async function main() {
@@ -116,12 +116,13 @@ async function main() {
                 let str = uint8ArrayToString(evt.detail.data);
                 // console.log("Pin:", str);
                 let cid = CID.parse(str);
-                const isPin = await ipfs.pins.isPinned(cid);
+                let isPin = await ipfs.pins.isPinned(cid);
                 if (!isPin) {
                     const pinResult = ipfs.pins.add(cid, { onProgress: onPin })
                     if (pinResult) {
                         await drain(pinResult);
                     }
+                    isPin = await ipfs.pins.isPinned(cid);
                     console.log("Pin:", isPin, str);
                 }
             } catch (e) {
