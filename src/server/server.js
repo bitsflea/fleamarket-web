@@ -65,7 +65,10 @@ const options = {
         bootstrap({
             list: bootstrappers
         })
-    ]
+    ],
+    connectionManager: {
+        maxConnections: 30, // 限制最大连接数
+    }
 }
 
 const onPin = (evt) => {
