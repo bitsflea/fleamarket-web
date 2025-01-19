@@ -7,12 +7,14 @@ import { bootstrap } from '@libp2p/bootstrap'
 import { circuitRelayTransport } from '@libp2p/circuit-relay-v2'
 import { identify, identifyPush } from '@libp2p/identify'
 import { kadDHT, removePublicAddressesMapper } from '@libp2p/kad-dht';
+import { gossipsub } from "@chainsafe/libp2p-gossipsub";
 
 const option = {
     addresses: {
         listen: [
             '/p2p-circuit',
             '/webrtc',
+            '/ip4/0.0.0.0/tcp/61713/ws'
         ]
     },
     transports: [
@@ -25,6 +27,7 @@ const option = {
     services: {
         identify: identify(),
         identifyPush: identifyPush(),
+        pubsub: gossipsub({ allowPublishToZeroPeers: true, emitSelf: true, canRelayMessage: true }),
         dht: kadDHT({
             protocol: '/ipfs/lan/kad/1.0.0',
             peerInfoMapper: removePublicAddressesMapper,

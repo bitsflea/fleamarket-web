@@ -8,10 +8,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "relay": "node src/server/relay.js",
-    "server": "DEBUG=libp2p:kad-dht* node src/server/server.js"
+    "server": "node src/server/server.js"
   },
   "dependencies": {
     "@chainsafe/libp2p-gossipsub": "^14.1.0",
+    "@helia/unixfs": "^4.0.2",
     "@heroicons/react": "^2.0.18",
     "@libp2p/peer-id-factory": "^4.2.4",
     "@libp2p/pubsub-peer-discovery": "^11.0.1",
@@ -21,11 +22,13 @@
     "blockstore-idb": "^2.0.1",
     "blockstore-level": "^2.0.1",
     "buffer": "^6.0.3",
+    "datastore-level": "^11.0.1",
     "date-fns": "^2.30.0",
     "helia": "^5.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.4.0",
+    "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

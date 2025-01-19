@@ -27,6 +27,7 @@ let ipfs = null;
 let orbitdb = null;
 let db = null;
 const relays = ["/dns4/wss.bitsflea.com/tcp/443/wss/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"]
+// const relays = ["/ip4/127.0.0.1/tcp/61713/ws/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"]
 
 export const initOrbitDB = async () => {
   if (db) return db;
