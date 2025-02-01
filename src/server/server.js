@@ -145,11 +145,19 @@ async function main() {
     // 打开或创建一个数据库
     let db = await orbitdb.open("bitsflea-chat", {
         create: true, // 如果数据库不存在，则创建
-        type: "events", // 可选：'events', 'keyvalue', 'docstore' 等
+        type: "events", // 可选：'events', 'keyvalue', 'documents' 等
         AccessController: IPFSAccessController({
             write: ['*'] // 允许任何人写入
         })
     });
+
+    let userDb = await orbitdb.open("bitsflea-user-data", {
+        create: true,
+        type: "documents",
+        AccessController: IPFSAccessController({
+            write: ['*']
+        })
+    })
 
     const message = {
         content: "Hello Welcome!",
@@ -164,7 +172,8 @@ async function main() {
     console.log(`Node started with id ${node.peerId.toString()}`)
     console.log('Listening on:')
     node.getMultiaddrs().forEach((ma) => console.log(ma.toString()))
-    console.log("Database ready:", db.address);
+    console.log("Database Chat:", db.address);
+    console.log("Database User:", userDb.address);
 }
 
 main()
