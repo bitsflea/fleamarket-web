@@ -14,62 +14,17 @@ import { circuitRelayTransport } from '@libp2p/circuit-relay-v2'
 
 import { LevelBlockstore } from 'blockstore-level'
 import { LevelDatastore } from 'datastore-level'
-import { createHelia } from 'helia';
+import { createHelia, libp2pDefaults } from 'helia';
 import { createOrbitDB, IPFSAccessController } from '@orbitdb/core';
 import { CID } from 'multiformats/cid'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
-import { unixfs } from '@helia/unixfs';
+import { json } from '@helia/json'
 import drain from 'it-drain'
-
-import { bootstrap } from '@libp2p/bootstrap';
-import bootstrappers from "./bootstrappers.js"
-
 
 let ipfs = null;
 let orbitdb = null;
 let userId = "bitsflea-chat";
 const topic = 'bitsflea-file-topic';
-
-const options = {
-    addresses: {
-        listen: [
-            '/ip4/0.0.0.0/tcp/61713/ws',
-            '/p2p-circuit',
-            '/webrtc',
-        ]
-    },
-    transports: [
-        webSockets({
-            filter: filters.all
-        }),
-        webRTC(),
-        circuitRelayTransport()
-    ],
-    connectionEncrypters: [noise()],
-    streamMuxers: [yamux()],
-    connectionGater: {
-        denyDialMultiaddr: () => false
-    },
-    services: {
-        identify: identify(),
-        identifyPush: identifyPush(),
-        pubsub: gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true, canRelayMessage: true }),
-        relay: circuitRelayServer({
-            reservations: {
-                maxReservations: Infinity
-            }
-        }),
-        dht: kadDHT(),
-    },
-    peerDiscovery: [
-        bootstrap({
-            list: bootstrappers
-        })
-    ],
-    connectionManager: {
-        maxConnections: 30, // 限制最大连接数
-    }
-}
 
 const onPin = (evt) => {
     console.log("onPin:", evt)
@@ -80,7 +35,15 @@ async function main() {
     let data = await (await create("SHA256", secret)).digest(secret)
     let pri = await generateKeyPairFromSeed("Ed25519", data)
 
-    const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
+    // const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
+    const libp2pOption = libp2pDefaults({ privateKey: pri })
+    libp2pOption.services['pubsub'] = gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true, canRelayMessage: true })
+    libp2pOption.addresses.listen = [
+        '/ip4/0.0.0.0/tcp/61713/ws',
+        '/p2p-circuit',
+        '/webrtc',
+    ]
+    const node = await createLibp2p(libp2pOption)
 
     node.addEventListener('peer:discovery', async (evt) => {
         const peerId = evt.detail.id.toString();
@@ -108,7 +71,16 @@ async function main() {
     if (!ipfs) {
         throw new Error("IPFS initialization failed");
     }
-    const fs = unixfs(ipfs);
+
+    // test json 
+    const j = json(ipfs);
+    const cid = CID.parse("baguqeerasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea")
+    const content = await j.get(cid)
+
+    // 输出json内容
+    console.log("Json content:", content)
+
+
     node.services.pubsub.addEventListener('message', async (evt) => {
         // console.log("evt:", evt, evt.detail.topic);
         if (evt.detail.topic == topic) {
