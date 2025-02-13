@@ -38,6 +38,7 @@ async function main() {
     // const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
     const libp2pOption = libp2pDefaults({ privateKey: pri })
     libp2pOption.services['pubsub'] = gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true, canRelayMessage: true })
+    delete libp2pOption.services.upnp
     libp2pOption.addresses.listen = [
         '/ip4/0.0.0.0/tcp/61713/ws',
         '/p2p-circuit',
