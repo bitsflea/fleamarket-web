@@ -44,6 +44,7 @@ async function main() {
         '/p2p-circuit',
         '/webrtc',
     ]
+    libp2pOption.connectionManager = { maxConnections: 50 }
     const node = await createLibp2p(libp2pOption)
 
     node.addEventListener('peer:discovery', async (evt) => {
@@ -75,7 +76,7 @@ async function main() {
 
     // test json 
     const j = json(ipfs);
-    const cid = CID.parse("baguqeerasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea")
+    const cid = CID.parse("bagaaieran3gqmu65wp4fjccrgidryjyfdxkubvm2fihe6u52qztirfxi56xq")
     const content = await j.get(cid)
 
     // 输出json内容
