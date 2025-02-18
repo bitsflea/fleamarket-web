@@ -84,6 +84,7 @@ async function main() {
     // const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
     const libp2pOption = libp2pDefaults({ privateKey: pri })
     libp2pOption.services['pubsub'] = gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true, canRelayMessage: true })
+    libp2pOption.services.dht = kadDHT({ clientMode: true })
     delete libp2pOption.services.upnp
     delete libp2pOption.services.autoNAT
 
@@ -93,20 +94,7 @@ async function main() {
         '/p2p-circuit',
         '/webrtc',
     ]
-    libp2pOption.peerDiscovery = [
-        bootstrap({
-            list: [
-                "/dns4/wss.bitsflea.com/tcp/443/wss/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h",
-                // "/ip4/23.94.67.168/tcp/61713/ws/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"
-                
-                // '/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN',
-                // '/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb',
-                // '/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt',
-                // '/dnsaddr/va1.bootstrap.libp2p.io/p2p/12D3KooWKnDdG3iXw9eTFijk3EWSunZcFi54Zka4wmtqtt6rPxc8',
-                // '/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ'
-            ],
-        })
-    ]
+    
     libp2pOption.connectionManager = {
         maxConnections: 20,
         outboundUpgradeTimeout: 30000,
