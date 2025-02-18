@@ -96,7 +96,7 @@ async function main() {
     ]
     
     libp2pOption.connectionManager = {
-        maxConnections: 20,
+        maxConnections: 100,
         outboundUpgradeTimeout: 30000,
         inboundUpgradeTimeout: 30000,
         dialTimeout: 50000
