@@ -14,7 +14,7 @@ const Navbar = () => {
           {/* <a href="#" className="text-white hover:text-pink-200 transition-colors">Home</a>
           <a href="#" className="text-white hover:text-pink-200 transition-colors">Reuse</a>
           <a href="#" className="text-white hover:text-pink-200 transition-colors">About</a>*/}
-          <a href="https://x.com/bitsflea95835" className="text-white hover:text-pink-200 transition-colors">
+          <a href="https://x.com/BitsFleaX" className="text-white hover:text-pink-200 transition-colors">
             <FaXTwitter className="text-white w-6 h-6 text-purple-900" />
           </a>
           <a href="https://t.me/+N9nHUnJ7hrQ0YzU1" className="text-white hover:text-pink-200 transition-colors">

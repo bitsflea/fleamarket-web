@@ -99,7 +99,7 @@ async function main() {
             list: [
                 "/dns4/wss.bitsflea.com/tcp/443/wss/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h",
                 // "/ip4/23.94.67.168/tcp/61713/ws/p2p/12D3KooWT36TURqwnygqydMHCT4fFeHdGibgW7EwcWGaj9CEnk3h"
-                
+
                 // '/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN',
                 // '/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb',
                 // '/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt',
@@ -202,25 +202,13 @@ async function main() {
     }
 
     // 打开或创建一个数据库
-    let db = await orbitdb.open("bitsflea-chat", {
-        create: true, // 如果数据库不存在，则创建
-        type: "events", // 可选：'events', 'keyvalue', 'documents' 等
-        AccessController: IPFSAccessController({
-            write: ['*'] // 允许任何人写入
-        })
-    });
+    let db = await orbitdb.open("/orbitdb/zdpuAzQi2wjs135VhWjj62XSSwPySfV41by5FUxme9fByZQDi")
 
     db.events.on('error', (evt) => {
         console.log("chat db error:", evt)
     })
 
-    let userDb = await orbitdb.open("bitsflea-user-data", {
-        create: true,
-        type: "documents",
-        AccessController: IPFSAccessController({
-            write: ['*']
-        })
-    })
+    let userDb = await orbitdb.open("/orbitdb/zdpuAsJkrPQ9yVYVVGzAz4aeaCxLvxYL7xdrEED6HwU8inNEV")
 
     userDb.events.on('error', (evt) => {
         console.log("user db error:", evt)

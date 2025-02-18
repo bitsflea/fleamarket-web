@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "relay": "node src/server/relay.js",
-    "server": "node src/server/server.js"
+    "server": "node src/server/server.js",
+    "client": "node src/server/client.js"
   },
   "dependencies": {
     "@chainsafe/libp2p-gossipsub": "^14.1.0",
