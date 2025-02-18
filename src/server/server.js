@@ -77,8 +77,7 @@ const options = {
 }
 
 async function main() {
-    // let secret = new TextEncoder().encode("12D3KooWMKhpKX3J2PY5nPLc5KSSEmT1FkBd8xcjLWVsRPJ4a4De")
-    let secret = new TextEncoder().encode("12D3KooWMKhpKX3J2PY5nPLc5KSSEmT1FkBd8xcjLWVsRPJ4a4D2")
+    let secret = new TextEncoder().encode("12D3KooWMKhpKX3J2PY5nPLc5KSSEmT1FkBd8xcjLWVsRPJ4a4De")
     let data = await (await create("SHA256", secret)).digest(secret)
     let pri = await generateKeyPairFromSeed("Ed25519", data)
 
