@@ -83,6 +83,7 @@ async function main() {
 
     // const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
     const libp2pOption = libp2pDefaults({ privateKey: pri })
+    libp2pOption.peerDiscovery = []
     libp2pOption.services['pubsub'] = gossipsub({ allowPublishToZeroTopicPeers: true, emitSelf: true, canRelayMessage: true })
     libp2pOption.services.dht = kadDHT({ clientMode: true })
     delete libp2pOption.services.upnp
@@ -94,7 +95,7 @@ async function main() {
         '/p2p-circuit',
         '/webrtc',
     ]
-    
+
     libp2pOption.connectionManager = {
         maxConnections: 100,
         outboundUpgradeTimeout: 30000,
