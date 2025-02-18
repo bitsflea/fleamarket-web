@@ -79,7 +79,10 @@ export const initOrbitDB = async () => {
       })
     ],
     connectionManager: {
-      maxConnections: 10, // 限制最大连接数
+      maxConnections: 20, // 限制最大连接数
+      outboundUpgradeTimeout: 30000,
+      inboundUpgradeTimeout: 30000,
+      dialTimeout: 50000
     }
   }
 
@@ -148,7 +151,7 @@ export const initOrbitDB = async () => {
 
     console.log("Database ready:", db.address);
 
-    
+
     // setInterval(()=>{
     //   console.log(ipfs.libp2p.getPeers().map((peerId) => peerId.toString()))
     // },3000)
