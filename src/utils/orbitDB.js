@@ -110,9 +110,8 @@ export const initOrbitDB = async () => {
     // await ipfs.libp2p.dial(multiaddr(relay))
     console.log("peerId:", ipfs.libp2p.peerId.toString())
 
-    ipfs.libp2p.addEventListener('peer:discovery', async (evt) => {
-      const peerId = evt.detail.id.toString();
-      console.log(`Discovered peer: ${peerId}`);
+    ipfs.libp2p.addEventListener('peer:connect', async (evt) => {
+      console.log(`Discovered peer: ${evt.detail.toString()}`);
 
       // try {
       //   // 连接到发现的节点
