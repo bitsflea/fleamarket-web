@@ -88,7 +88,7 @@ export const initOrbitDB = async () => {
 
   if (relays.length > 0) {
     option.peerDiscovery.push(bootstrap({
-      list: [...relays, ...bootstrappers]
+      list: [...relays, ...bootstrappers.list]
     }))
   }
 
