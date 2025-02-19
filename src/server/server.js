@@ -98,7 +98,6 @@ async function main() {
         '/p2p-circuit',
         '/webrtc',
     ]
-    libp2pOption.connectionGater
     libp2pOption.connectionManager = {
         maxConnections: 100,
         outboundUpgradeTimeout: 30000,
