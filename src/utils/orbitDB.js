@@ -114,13 +114,13 @@ export const initOrbitDB = async () => {
       const peerId = evt.detail.id.toString();
       console.log(`Discovered peer: ${peerId}`);
 
-      try {
-        // 连接到发现的节点
-        await ipfs.libp2p.dial(evt.detail.id);
-        console.log(`Connected to peer: ${peerId}`);
-      } catch (err) {
-        console.error(`Failed to connect to peer: ${peerId}`, err);
-      }
+      // try {
+      //   // 连接到发现的节点
+      //   await ipfs.libp2p.dial(evt.detail.id);
+      //   console.log(`Connected to peer: ${peerId}`);
+      // } catch (err) {
+      //   console.error(`Failed to connect to peer: ${peerId}`, err);
+      // }
     });
 
     ipfs.libp2p.addEventListener('connection:open', (evt) => {
