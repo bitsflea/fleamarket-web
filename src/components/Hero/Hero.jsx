@@ -13,7 +13,7 @@ const Hero = () => {
             Welcome to BitsFlea<br/>
             She is a flea market
           </h1>
-          <button className="bg-pink-200 text-purple-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-pink-300 transition-colors shadow-lg">
+          <button onClick={()=>window.location.href="https://test.bitsflea.com"} className="bg-pink-200 text-purple-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-pink-300 transition-colors shadow-lg">
             Get Started
           </button>
         </div>

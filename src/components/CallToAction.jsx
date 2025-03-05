@@ -7,7 +7,7 @@ const CallToAction = () => {
         <h2 className="text-4xl font-bold text-white mb-10 max-w-3xl mx-auto leading-tight">
           The development of blockchain economy is the historical trend and inevitable choice of today's world
         </h2>
-        <button className="bg-pink-200 text-purple-900 px-10 py-4 rounded-full text-lg font-semibold hover:bg-pink-300 transition-colors shadow-lg">
+        <button onClick={()=>window.location.href="https://test.bitsflea.com"} className="bg-pink-200 text-purple-900 px-10 py-4 rounded-full text-lg font-semibold hover:bg-pink-300 transition-colors shadow-lg">
           Get Started
         </button>
       </div>

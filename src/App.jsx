@@ -14,7 +14,7 @@ function App() {
       <Hero />
       <Features />
       <CallToAction />
-      <ChatButton onClick={() => setIsChatOpen(true)} />
+      {/* <ChatButton onClick={() => setIsChatOpen(true)} /> */}
       {isChatOpen && <ChatWindow onClose={() => setIsChatOpen(false)} />}
     </div>
   );

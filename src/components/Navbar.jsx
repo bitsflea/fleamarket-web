@@ -14,18 +14,18 @@ const Navbar = () => {
           {/* <a href="#" className="text-white hover:text-pink-200 transition-colors">Home</a>
           <a href="#" className="text-white hover:text-pink-200 transition-colors">Reuse</a>
           <a href="#" className="text-white hover:text-pink-200 transition-colors">About</a>*/}
-          <a href="https://x.com/BitsFleaX" className="text-white hover:text-pink-200 transition-colors">
+          <a href="https://x.com/BitsFleaX" target='_blank' className="text-white hover:text-pink-200 transition-colors">
             <FaXTwitter className="text-white w-6 h-6 text-purple-900" />
           </a>
-          <a href="https://t.me/+N9nHUnJ7hrQ0YzU1" className="text-white hover:text-pink-200 transition-colors">
+          <a href="https://t.me/bitsflea" target='_blank' className="text-white hover:text-pink-200 transition-colors">
             <FaTelegram className="text-white w-6 h-6 text-purple-900" />
           </a>
-          <a href="https://github.com/bitsflea" className="text-white hover:text-pink-200 transition-colors">
+          <a href="https://github.com/bitsflea" target='_blank' className="text-white hover:text-pink-200 transition-colors">
             <FaGithub className="text-white w-6 h-6 text-purple-900" />
           </a>
         </div>
 
-        <button className="bg-pink-200 text-purple-900 px-6 py-2 rounded-full hover:bg-pink-300 transition-colors shadow-lg">
+        <button onClick={()=>window.location.href="https://test.bitsflea.com"} className="bg-pink-200 text-purple-900 px-6 py-2 rounded-full hover:bg-pink-300 transition-colors shadow-lg">
           Get Started
         </button>
       </div>
