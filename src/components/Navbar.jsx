@@ -25,7 +25,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        <button onClick={()=>window.location.href="https://test.bitsflea.com"} className="bg-pink-200 text-purple-900 px-6 py-2 rounded-full hover:bg-pink-300 transition-colors shadow-lg">
+        <button onClick={()=>window.location.href="https://app.bitsflea.com"} className="bg-pink-200 text-purple-900 px-6 py-2 rounded-full hover:bg-pink-300 transition-colors shadow-lg">
           Get Started
         </button>
       </div>
