@@ -81,6 +81,13 @@ async function main() {
     let data = await (await create("SHA256", secret)).digest(secret)
     let pri = await generateKeyPairFromSeed("Ed25519", data)
 
+    process.on('unhandledRejection', (reason, promise) => {
+        console.error('⚠️ Unhandled Rejection:', reason);
+    });
+    process.on('uncaughtException', (err) => {
+        console.error('⚠️ Uncaught Exception:', err);
+    });
+
     // const node = await createLibp2p(Object.assign(options, { privateKey: pri }))
     const libp2pOption = libp2pDefaults({ privateKey: pri })
     libp2pOption.peerDiscovery = [
